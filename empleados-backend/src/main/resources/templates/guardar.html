@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>agregar mongo</title>
+        <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    </head>
+    <body>
+        <div class="container">
+            <br>
+            <h2>Agregar empleado</h2>
+            <form action="#" th:action="@{/guardar}" th:object="${empleado}" method="post">
+                <div class="mb-3">
+                  <label for="id" class="form-label">DNI</label>
+                  <input type="tex" class="form-control" id="id" placeholder="Ingresa nombre"
+                         th:field="*{id}" name="id">
+                </div>
+                
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="tex" class="form-control" id="nombre" placeholder="Ingresa nombre"
+                         th:field="*{nombre}" name="nombre">
+                </div>
+                
+                <div class="mb-3">
+                  <label for="apellido" class="form-label">Apellido</label>
+                  <input type="tex" class="form-control" id="apellido" placeholder="Ingresa apellido"
+                         th:field="*{apellido}" name="apellido">
+                </div>
+                <div class="mb-3">
+                  <label for="edad" class="form-label">Edad</label>
+                  <input type="tex" class="form-control" id="nombre" placeholder="Ingresa edad"
+                         th:field="*{edad}" name="edad">
+                </div>
+                <div class="mb-3">
+                  <label for="direccion" class="form-label">Direccion</label>
+                  <input type="tex" class="form-control" id="direccion" placeholder="Ingresa direccion"
+                         th:field="*{direccion}" name="direccion">
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Telefono</label>
+                  <input type="tex" class="form-control" id="telefono" placeholder="Ingresa telefono"
+                         th:field="*{telefono}" name="telefono">
+                </div>
+                <button type="submit" class="btn btn-dark">Guardar</button>
+            </form>
+        </div>
+    </body>
+</html>

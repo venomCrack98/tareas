@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Aplication Spring</title>
-        <link href="../static/css/boostrap.css" rel="stylesheet" th:href="@{/css/boostrap.css}">
+        <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
       
     </head>
     <body>
@@ -19,6 +19,7 @@
                 <table class="table">
                     <thead>
                       <tr>
+                        <th>DNI</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Edad</th>
@@ -29,25 +30,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
+                      <tr th:each="empleado : ${list}">
+                        <td th:text="${empleado.id}">
+                        <td th:text="${empleado.nombre}">
+                        <td th:text="${empleado.apellido}">
+                        <td th:text="${empleado.edad}">
+                        <td th:text="${empleado.direccion}">
+                        <td th:text="${empleado.telefono}">
+                        <td> <a class="btn btn-primary" th:href="@{/guardar/{id}(id=${empleado.id})}">Editar</a></td>
+                        <td> <a class="btn btn-danger" th:href="@{/eliminar/{id}(id=${empleado.id})}">Eliminar</a></td>
                       </tr>
                     </tbody>
                 </table>
+            </div>
+            <br>
+            <div>
+                <a th:href="@{/guardar/0}" class="btn btn-success">Agregar</a>
             </div>
             
         </div>
