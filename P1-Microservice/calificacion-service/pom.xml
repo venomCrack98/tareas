@@ -8,7 +8,7 @@
 		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.calificaciones.service</groupId>
+	<groupId>com.msvc.calificacion</groupId>
 	<artifactId>calificacion-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>calificacion-service</name>

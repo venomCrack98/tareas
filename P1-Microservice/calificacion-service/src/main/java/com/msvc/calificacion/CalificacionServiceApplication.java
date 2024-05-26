@@ -1,4 +1,4 @@
-package com.calificaciones.service;
+package com.msvc.calificacion;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
