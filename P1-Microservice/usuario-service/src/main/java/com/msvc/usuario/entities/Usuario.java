@@ -1,13 +1,13 @@
-package com.msvc.usuario.entity;
+package com.msvc.usuario.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,4 +30,6 @@ public class Usuario {
     @Column(name ="informacion")
     private String informacion;
 
+    @Transient
+    private List<Calificacion> calificacion = new ArrayList<>();
 }

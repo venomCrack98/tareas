@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/calificaiones")
+@RequestMapping("/calificaciones")
 public class CalificacionController {
     @Autowired
     private CalificacionService service;
