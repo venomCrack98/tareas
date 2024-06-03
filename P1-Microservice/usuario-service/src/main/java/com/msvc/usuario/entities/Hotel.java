@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Hotel {
-    private String hotelId;
+    private String id;
     private String nombre;
     private String ubicacion;
     private String informacion;

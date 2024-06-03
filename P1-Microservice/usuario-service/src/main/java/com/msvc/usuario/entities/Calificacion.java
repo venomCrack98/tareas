@@ -11,10 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Calificacion {
     private String calificacionId;
-    private String usuarioId;
+    private String usuariosId;
     private String hotelId;
     private int calificacion;
-    private String observaciones;
+    private String observacion;
     private Hotel hotel;
 
 }
