@@ -3,6 +3,7 @@ package com.msvc.usuario.controllers;
 import com.msvc.usuario.entities.Usuario;
 import com.msvc.usuario.service.UsuarioService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,14 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarios);
     }
 
+    int retryCount = 1;
     @GetMapping("/{usuarioid}")
-    @CircuitBreaker(name ="ratingHotelBreaker", fallbackMethod = "ratingHotelFallback")
+    //@CircuitBreaker(name ="ratingHotelBreaker", fallbackMethod = "ratingHotelFallback")
+    @Retry(name = "ratingHotelService", fallbackMethod = "ratingHotelFallback")
     public ResponseEntity<Usuario> obtenerUsuario(@PathVariable String usuarioid){
+        log.info("Listar un solo usuario: usuarioController");
+        log.info("Cantidad reintentos : {}", retryCount);
+        retryCount ++;
         Usuario usuario= service.getUsuario(usuarioid);
         return ResponseEntity.ok(usuario);
     }
