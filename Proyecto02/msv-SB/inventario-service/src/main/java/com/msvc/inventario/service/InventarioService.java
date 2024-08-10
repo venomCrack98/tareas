@@ -2,20 +2,26 @@ package com.msvc.inventario.service;
 
 import com.msvc.inventario.dto.InventarioResponse;
 import com.msvc.inventario.repository.InventarioRespository;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 public class InventarioService {
 
     @Autowired
     private InventarioRespository inventarioRespository;
     @Transactional(readOnly = true)
+    @SneakyThrows
     public List<InventarioResponse> isInStock(List<String> codigoSku){
+        log.info("Wait started");
+        Thread.sleep(10000);
+        log.info("Wait end");
         return inventarioRespository.findByCodigoSkuIn(codigoSku).stream()
                 .map(inventario ->
                         InventarioResponse.builder()

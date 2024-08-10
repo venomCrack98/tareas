@@ -6,7 +6,9 @@ import com.msvc.order.dto.OrderRequest;
 import com.msvc.order.model.Order;
 import com.msvc.order.model.OrderLineItems;
 import com.msvc.order.repository.OrderRepository;
-import jakarta.transaction.Transactional;
+//import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +27,10 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
-    private WebClient.Builder webClientBulder;
-    public void placeOrder(OrderRequest orderRequest){
+    private WebClient.Builder webClientBuilder;
+
+    @Transactional(readOnly = true)
+    public String placeOrder(OrderRequest orderRequest){
         Order order = new Order();
         order.setNumeroPedido(UUID.randomUUID().toString());
 
@@ -41,7 +45,7 @@ public class OrderService {
                         .map(OrderLineItems::getCodigoSku)
                                 .collect(Collectors.toList());
         log.info("Codigo sku : {}" + codigoSku);
-        InventarioResponse[] inventarioResponseArray = webClientBulder.build().get()
+        InventarioResponse[] inventarioResponseArray = webClientBuilder.build().get()
                         .uri("http://inventario-service/api/inventario", uriBuilder
                                 -> uriBuilder.queryParam("codigoSku",codigoSku).build())
                         .retrieve()
@@ -51,7 +55,8 @@ public class OrderService {
         boolean allProductosInStock = Arrays.stream(inventarioResponseArray)
                         .allMatch(InventarioResponse::isInStock);
         if (allProductosInStock) {
-            orderRepository.save(order);
+            //orderRepository.save(order);
+            return "Pedido ordenado con exito";
         } else {
             throw new IllegalArgumentException("EL producto no esta en stock");
         }
